@@ -22,7 +22,7 @@ function Weather(){
 
     const kelvin = 273;
     const APIKEY = '9f47dbe7e74e9cca1168773c174db9a2'
-    const URL = `https://api.openweathermap.org/data/2.5/weather?q=kidderminster&appid=9f47dbe7e74e9cca1168773c174db9a2`;
+    //const URL = `https://api.openweathermap.org/data/2.5/weather?q=kidderminster&appid=9f47dbe7e74e9cca1168773c174db9a2`;
     
     
     const [isStatus, setStatus] = useState(true)
