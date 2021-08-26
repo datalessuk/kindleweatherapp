@@ -25,7 +25,7 @@ function Weather(){
     const URL = `https://api.openweathermap.org/data/2.5/weather?q=kidderminster&appid=9f47dbe7e74e9cca1168773c174db9a2`;
     
     
-    const [isStatus, setStatus] = useState(false)
+    const [isStatus, setStatus] = useState(true)
     setInterval(()=> {
     setStatus(!isStatus)
     },  1000 * 60 *30) //60 1000 * 60 *15
