@@ -14,71 +14,50 @@ import thunder from '../img/logos/weathericons/thunder.svg'
 import snow from '../img/logos/weathericons/snowy-6.svg'
 
 
-function Weather(){
+function Weather(props){
+   
     
     const [weather,setWeather] = useState(null);
-    //const [logo,setLogo]  = useState(null);
- 
-
     const kelvin = 273;
-    const APIKEY = '9f47dbe7e74e9cca1168773c174db9a2'
-    //const URL = `https://api.openweathermap.org/data/2.5/weather?q=kidderminster&appid=9f47dbe7e74e9cca1168773c174db9a2`;
-    
-    
-    const [isStatus, setStatus] = useState(true)
-    setInterval(()=> {
-    setStatus(!isStatus)
-    },  1000 * 60 *30) //60 1000 * 60 *15
+    const URL = `https://api.openweathermap.org/data/2.5/weather?q=kidderminster&appid=9f47dbe7e74e9cca1168773c174db9a2`;
 
+    const [counter, changeCounter] = useState(0);
+ 
+    useEffect(() => {
+      const interval = setInterval(() => {
+        changeCounter(counter + 1);
+      }, 1000 *60*30);
+   
+      return () => clearInterval(interval)
+    }, [counter]);
+    //function callEveryMin(){
+        //setInterval(getWether(),60000);
+    //}
 
-    //useEffect(()=>{
-        //console.log(weather)
-    //},[weather])
+    //setInterval(getWether(),60000);
+    //getWether();
 
    
-    let count = 0;
-    
-    useEffect(()=>{
-  
-    axios.get(URL).then(response=>{
-
-        console.log(response);
+   
+  useEffect(()=>{
+        axios.get(URL).then(response=>{
         
-       
+            setWeather(response.data);
         
-        //setWeather({response},function(){
-            
-            //console.log(weather.data);
-       // })
-        
-        setWeather(response.data);
-        //console.log(weather)
-        let count = 0;
-        count++;
-        console.log(count);
-
-        //console.log(weather.weather[0].main);
-        //setLogo(response.data.weather[0].main);
-       // console.log(logo);
-        
-        //console.log(weather.weather[0].main);
-        //console.log(weather);
-        //console.log(Math.floor(weather.main.temp - kelvin));
-        
-        
-        
-         //console.log(logo.response.data.weather[0].main);
-
-    },)
-    .catch(error=>{
-        console.log(error);
+         console.log(response);
+                
+    }).catch(error=>{
+        console.log(error)
     })
-  
-    },[isStatus]);
-
+    },[counter]); 
     
     
-     console.log();
+    
+    //function timeOut(){
+        //console.log('This is to be displayed once every 30 seconds');
+    //}
+    
+    //  console.log();
     let logo = null;
     
     if(!weather){
