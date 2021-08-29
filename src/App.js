@@ -41,7 +41,9 @@ function App(props) {
         <TodaysDate/>
         <Settings isOn={value}
         handleToggle={() => setValue(!value)}/>
+        <div className="exit">
         <button className="exitFullsreen" onClick={handle.exit}></button>
+        </div>
       </FullScreen>
     </div>
   );
