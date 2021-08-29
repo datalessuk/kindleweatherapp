@@ -2,7 +2,7 @@ import Popup from 'reactjs-popup';
 import React, { useState } from 'react';
 
 import '../styles/Settings.scss'
-
+import { FullScreen, useFullScreenHandle } from "react-full-screen";
 
 // 
 
@@ -45,7 +45,6 @@ const Settings = ({isOn,handleToggle}) => {
             
           </div>
         </div>
-        
       </Popup>
     </div>
   );

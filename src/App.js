@@ -9,6 +9,7 @@ import TodaysDate from './components/CurrentDate';
 import TimeNow from '../src/components/Time'
 
 
+
 function App(props) {
   const handle = useFullScreenHandle();
   
@@ -16,7 +17,7 @@ function App(props) {
   const [value, setValue] = useState(false);
 
 
-  const location = 'kidderminster';
+ 
 
  
 
@@ -31,19 +32,16 @@ function App(props) {
   
   return (
     <div className="App">
-      
-
-
-  <button onClick={handle.enter}>
-        Enter fullscreen
+  <button className="fullScreen" onClick={handle.enter} >
       </button>
 
       <FullScreen handle={handle}>
-      <TodaysWeather loc={location}/>
+      <TodaysWeather/>
         <TimeNow timeSwitch={value} />
         <TodaysDate/>
         <Settings isOn={value}
         handleToggle={() => setValue(!value)}/>
+        <button className="exitFullsreen" onClick={handle.exit}></button>
       </FullScreen>
     </div>
   );

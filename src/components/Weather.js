@@ -4,6 +4,8 @@ import axios from 'axios';
 import '../styles/WeatherStyles.scss'
 
 
+
+
 // Weather icon imports
 import clearSky from '../img/logos/weathericons/day.svg'
 import fewClounds from '../img/logos/weathericons/cloudy.svg'
@@ -12,6 +14,9 @@ import showerRain from '../img/logos/weathericons/rainy-1.svg'
 import rain from '../img/logos/weathericons/rainy-7.svg'
 import thunder from '../img/logos/weathericons/thunder.svg'
 import snow from '../img/logos/weathericons/snowy-6.svg'
+import night from '../img/logos/weathericons/night.svg'
+import cloudNight from '../img/logos/weathericons/cloudy-night-2.svg'
+
 
 
 function Weather(props){
@@ -22,7 +27,16 @@ function Weather(props){
     const URL = `https://api.openweathermap.org/data/2.5/weather?q=kidderminster&appid=9f47dbe7e74e9cca1168773c174db9a2`;
 
     const [counter, changeCounter] = useState(0);
+
+    function getTime(){
+        let date = new Date();
+
+        let hours = date.getHours();
+        return hours;
+    }
+    
  
+
     useEffect(() => {
       const interval = setInterval(() => {
         changeCounter(counter + 1);
@@ -30,16 +44,8 @@ function Weather(props){
    
       return () => clearInterval(interval)
     }, [counter]);
-    //function callEveryMin(){
-        //setInterval(getWether(),60000);
-    //}
-
-    //setInterval(getWether(),60000);
-    //getWether();
-
    
-   
-  useEffect(()=>{
+    useEffect(()=>{
         axios.get(URL).then(response=>{
         
             setWeather(response.data);
@@ -50,14 +56,10 @@ function Weather(props){
         console.log(error)
     })
     },[counter]); 
+
+
+    let time = getTime();
     
-    
-    
-    //function timeOut(){
-        //console.log('This is to be displayed once every 30 seconds');
-    //}
-    
-    //  console.log();
     let logo = null;
     
     if(!weather){
@@ -66,8 +68,14 @@ function Weather(props){
     else if(weather.weather[0].main ==='Clouds'){
         logo = fewClounds;
     }
+    else if(weather.weather[0].main ==='Clouds' && time > 21){
+        logo = cloudNight;
+    }
     else if(weather.weather[0].main ==='Clear'){
         logo = clearSky;
+    }
+    else if(weather.weather[0].main ==='Clear' && time >21){
+        logo = night;
     }
     else if(weather.weather[0].main ==='Drizzle'){
         logo = showerRain;
@@ -90,19 +98,20 @@ function Weather(props){
     else{
         logo = brokenClounds;
     }  
+
+
     
     
     if(weather){
         return(
             <div className="header">
                 <h1><img src={logo}></img>{Math.floor(weather.main.temp-kelvin)} °</h1>
-                
             </div>
         )
     }
     return(
         <div className="header">
-            
+            <h1>API DOWN</h1>
         </div>
     )
     
