@@ -58,7 +58,8 @@ function Weather(props){
     },[counter]); 
 
 
-    let time = getTime();
+    let time = parseInt(getTime());
+    console.log(time);
     
     let logo = null;
     
@@ -71,7 +72,7 @@ function Weather(props){
     else if(weather.weather[0].main ==='Clouds' && time > 21){
         logo = cloudNight;
     }
-    else if(weather.weather[0].main ==='Clear'){
+    else if(weather.weather[0].main ==='Clear' && time <21){
         logo = clearSky;
     }
     else if(weather.weather[0].main ==='Clear' && time >21){
@@ -88,9 +89,6 @@ function Weather(props){
     }
     else if(weather.weather[0].main ==='Thunderstorm'){
         logo = thunder
-    }
-    else if(weather.weather[0].main ==='Clear'){
-        logo = clearSky
     }
     else if(weather.weather[0].main ==='Mist'){
         logo = brokenClounds;
@@ -111,7 +109,7 @@ function Weather(props){
     }
     return(
         <div className="header">
-            <h1>API DOWN</h1>
+            <h1>API DOWN!!!</h1>
         </div>
     )
     
