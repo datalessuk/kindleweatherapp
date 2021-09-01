@@ -16,20 +16,6 @@ function App(props) {
   
   const [value, setValue] = useState(false);
 
-
- 
-
- 
-
-  
-  //<Settings isOn={value}
-  //handleToggle={() => setValue(!value)}/>
-
-    
-    
-//<Time time={realTime}/>
-
-  
   return (
     <div className="App">
   <button className="fullScreen" onClick={handle.enter} >
