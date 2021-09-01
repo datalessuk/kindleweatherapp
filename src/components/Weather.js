@@ -37,6 +37,13 @@ function Weather(props){
     }
     
  
+    function isDay(time){
+        if(time >=6 && time <20){
+            return true;
+        }
+        return false;
+
+    }
 
     useEffect(() => {
       const interval = setInterval(() => {
@@ -61,27 +68,26 @@ function Weather(props){
     },[counter]); 
 
     //console.log(state);
-    let time = state;
+    let dayOrNight = isDay(state); 
+    //let time = state;
+    //console.log(isDay(state));
+    //let x = isDay(state);
+    //console.log(x);
     
-    console.log(time);
     let logo = null;
     
     if(!weather){
         logo = snow;
     }
-    else if(weather.weather[0].main ==='Clouds' && time >= 7 && time <19){
-        logo = fewClounds;
-        console.log('1')
+    else if(weather.weather[0].main ==='Clouds' && dayOrNight){
+        logo = fewClounds
+        console.log(`${state} Day`);
     }
-    else if(weather.weather[0].main ==='Clouds' && time >=20){
+    else if(weather.weather[0].main ==='Clouds' && !dayOrNight){
         logo = cloudNight;
-        console.log('2')
+        console.log(`${state} Night`);  
     }
-    else if(weather.weather[0].main ==='Clear' && time >=9){
-        logo = clearSky;
-        console.log('3')
-    }
-    else if(weather.weather[0].main ==='Clear' && time >=20){
+    else if(weather.weather[0].main ==='Clear' && !dayOrNight){
         logo = night;
         console.log('4')
     }
@@ -105,6 +111,7 @@ function Weather(props){
         logo = brokenClounds;
         console.log('9')
     }
+   
     else{
         logo = brokenClounds;
         console.log('10')
