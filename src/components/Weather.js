@@ -23,6 +23,8 @@ function Weather(props){
    
     
     const [weather,setWeather] = useState(null);
+    const [state,setState]=useState();
+    
     const kelvin = 273;
     const URL = `https://api.openweathermap.org/data/2.5/weather?q=kidderminster&appid=9f47dbe7e74e9cca1168773c174db9a2`;
 
@@ -30,7 +32,6 @@ function Weather(props){
 
     function getTime(){
         let date = new Date();
-
         let hours = date.getHours();
         return hours;
     }
@@ -49,54 +50,66 @@ function Weather(props){
         axios.get(URL).then(response=>{
         
             setWeather(response.data);
-        
-         console.log(response);
+            console.log(response.data);
+            setState(getTime());
+            
+            
                 
     }).catch(error=>{
         console.log(error)
     })
     },[counter]); 
 
-
-    let time = parseInt(getTime());
-    console.log(time);
+    //console.log(state);
+    let time = state;
     
+    console.log(time);
     let logo = null;
     
     if(!weather){
         logo = snow;
     }
-    else if(weather.weather[0].main ==='Clouds'){
+    else if(weather.weather[0].main ==='Clouds' && time >= 7 && time <19){
         logo = fewClounds;
+        console.log('1')
     }
-    else if(weather.weather[0].main ==='Clouds' && time > 21){
+    else if(weather.weather[0].main ==='Clouds' && time >=20){
         logo = cloudNight;
+        console.log('2')
     }
-    else if(weather.weather[0].main ==='Clear' && time <21){
+    else if(weather.weather[0].main ==='Clear' && time >=9){
         logo = clearSky;
+        console.log('3')
     }
-    else if(weather.weather[0].main ==='Clear' && time >21){
+    else if(weather.weather[0].main ==='Clear' && time >=20){
         logo = night;
+        console.log('4')
     }
     else if(weather.weather[0].main ==='Drizzle'){
         logo = showerRain;
+        console.log('5')
     }
     else if(weather.weather[0].main ==='Rain'){
         logo = rain;
+        console.log('6')
     }
     else if(weather.weather[0].main ==='Snow'){
         logo = snow;
+        console.log('7')
     }
     else if(weather.weather[0].main ==='Thunderstorm'){
         logo = thunder
+        console.log('8')
     }
     else if(weather.weather[0].main ==='Mist'){
         logo = brokenClounds;
+        console.log('9')
     }
     else{
         logo = brokenClounds;
+        console.log('10')
     }  
-
+    
 
     
     
