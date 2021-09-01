@@ -2,10 +2,6 @@ import React,{useEffect,useState} from 'react';
 import axios from 'axios';
 
 import '../styles/WeatherStyles.scss'
-
-
-
-
 // Weather icon imports
 import clearSky from '../img/logos/weathericons/day.svg'
 import fewClounds from '../img/logos/weathericons/cloudy.svg'
@@ -42,7 +38,6 @@ function Weather(props){
             return true;
         }
         return false;
-
     }
 
     useEffect(() => {
@@ -59,21 +54,13 @@ function Weather(props){
             setWeather(response.data);
             console.log(response.data);
             setState(getTime());
-            
-            
-                
     }).catch(error=>{
         console.log(error)
     })
     },[counter]); 
 
-    //console.log(state);
-    let dayOrNight = isDay(state); 
-    //let time = state;
-    //console.log(isDay(state));
-    //let x = isDay(state);
-    //console.log(x);
     
+    let dayOrNight = isDay(state); 
     let logo = null;
     
     if(!weather){
@@ -90,6 +77,9 @@ function Weather(props){
     else if(weather.weather[0].main ==='Clear' && !dayOrNight){
         logo = night;
         console.log('4')
+    }
+    else if(weather.weather[0].main ==='Clear' && dayOrNight){
+        logo = clearSky;
     }
     else if(weather.weather[0].main ==='Drizzle'){
         logo = showerRain;
@@ -111,14 +101,10 @@ function Weather(props){
         logo = brokenClounds;
         console.log('9')
     }
-   
     else{
         logo = brokenClounds;
         console.log('10')
     }  
-    
-
-    
     
     if(weather){
         return(
