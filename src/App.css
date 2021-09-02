@@ -9,13 +9,13 @@
   width: 100%;
   min-height: 100vh;
   background-repeat: no-repeat;
-  
+  filter: brightness(125%);
   
 }
 .fullscreen-enabled{
   background-image: url('../src/img/thunder.jpg');
   background-size: 100% 100%;
-  
+  filter: brightness(125%);
 }
 .fullscreen-enabled .exitFullsreen{
   background:url('../src/img/logos/compress-arrows-alt-solid.svg');

@@ -18,19 +18,19 @@ function Time(props){
          
           if(hours >=12){
             hours = ((hours + 11) % 12 + 1);
-
+            
             ampm = "pm";
           }
           
           return hours + ":" + minutes + "" + ampm;
-          
       }
-      else{
-        
+
+      else
+      {
         if(minutes <10){
           minutes = "0" + minutes;
+
         }
-          
           return hours + ":" + minutes
       }
       
