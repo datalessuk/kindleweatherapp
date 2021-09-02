@@ -13,16 +13,20 @@ import snow from '../img/logos/weathericons/snowy-6.svg'
 import night from '../img/logos/weathericons/night.svg'
 import cloudNight from '../img/logos/weathericons/cloudy-night-2.svg'
 
+import errorLogo from '../img/logos/exclamation-triangle-solid.svg'
 
 
-function Weather(props){
-   
-    
+function Weather(){
+
     const [weather,setWeather] = useState(null);
     const [state,setState]=useState();
     
     const kelvin = 273;
     const URL = `https://api.openweathermap.org/data/2.5/weather?q=kidderminster&appid=9f47dbe7e74e9cca1168773c174db9a2`;
+
+    const weatherLogo = [clearSky,fewClounds,brokenClounds
+                        ,showerRain,rain,thunder
+                        ,snow,night,cloudNight,errorLogo];
 
     const [counter, changeCounter] = useState(0);
 
@@ -32,7 +36,6 @@ function Weather(props){
         return hours;
     }
     
- 
     function isDay(time){
         if(time >=6 && time <20){
             return true;
@@ -52,59 +55,49 @@ function Weather(props){
         axios.get(URL).then(response=>{
         
             setWeather(response.data);
-            console.log(response.data);
             setState(getTime());
+
     }).catch(error=>{
         console.log(error)
     })
     },[counter]); 
 
-    
     let dayOrNight = isDay(state); 
     let logo = null;
     
     if(!weather){
-        logo = snow;
+        logo = weatherLogo[9];
     }
     else if(weather.weather[0].main ==='Clouds' && dayOrNight){
-        logo = fewClounds
-        console.log(`${state} Day`);
+        logo = weatherLogo[1]
     }
     else if(weather.weather[0].main ==='Clouds' && !dayOrNight){
-        logo = cloudNight;
-        console.log(`${state} Night`);  
+        logo = weatherLogo[8] 
     }
     else if(weather.weather[0].main ==='Clear' && !dayOrNight){
-        logo = night;
-        console.log('4')
+        logo = weatherLogo[7]
     }
     else if(weather.weather[0].main ==='Clear' && dayOrNight){
-        logo = clearSky;
+        logo = weatherLogo[0];
     }
     else if(weather.weather[0].main ==='Drizzle'){
-        logo = showerRain;
-        console.log('5')
+        logo = weatherLogo[3];
     }
     else if(weather.weather[0].main ==='Rain'){
-        logo = rain;
-        console.log('6')
+        logo = weatherLogo[4];
     }
     else if(weather.weather[0].main ==='Snow'){
-        logo = snow;
-        console.log('7')
+        logo = weatherLogo[6];
     }
     else if(weather.weather[0].main ==='Thunderstorm'){
-        logo = thunder
-        console.log('8')
+        logo = weatherLogo[5];
     }
     else if(weather.weather[0].main ==='Mist'){
-        logo = brokenClounds;
-        console.log('9')
+        logo = weatherLogo[2];
     }
     else{
-        logo = brokenClounds;
-        console.log('10')
-    }  
+        logo = weatherLogo[2];
+    }
     
     if(weather){
         return(
@@ -115,7 +108,8 @@ function Weather(props){
     }
     return(
         <div className="header">
-            <h1>API DOWN!!!</h1>
+            <h1>API IS Down{logo}</h1>
+            <h2>{logo}</h2>
         </div>
     )
     
