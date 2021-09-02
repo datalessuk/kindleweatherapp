@@ -16,12 +16,11 @@ function Time(props){
       
           let ampm = "am";
          
-          if(hours >10){
-            hours -= 12;
+          if(hours >=12){
+            hours = ((hours + 11) % 12 + 1);
+
             ampm = "pm";
           }
-          
-          
           
           return hours + ":" + minutes + "" + ampm;
           
@@ -55,9 +54,7 @@ function Time(props){
 
     return(
         <div className="time-container">
-
         <h1 className="time">{realTime}</h1>
-        
         </div>
     )
 }
