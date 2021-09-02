@@ -2,14 +2,12 @@ import Popup from 'reactjs-popup';
 import React, { useState } from 'react';
 
 import '../styles/Settings.scss'
-import { FullScreen, useFullScreenHandle } from "react-full-screen";
-
-// 
 
 const Settings = ({isOn,handleToggle}) => {
   const [open, setOpen] = useState(false);
   const closeModal = () => setOpen(false);
 
+  
 
   //<Switch value={value} onChange={setValue} />
 
@@ -17,7 +15,7 @@ const Settings = ({isOn,handleToggle}) => {
     <div>
       <button type="button" className="logo" onClick={() => setOpen(o => !o)}>
       </button>
-      <Popup open={open} closeOnDocumentClick onClose={closeModal}>
+      <Popup open={open} closeOnDocumentClick onClose={closeModal} >
         <div className="modal">
           <button className="close" onClick={closeModal}>
             &times;

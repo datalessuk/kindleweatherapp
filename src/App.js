@@ -8,7 +8,8 @@ import Settings from '../src/components/Settings'
 import TodaysDate from './components/CurrentDate';
 import TimeNow from '../src/components/Time'
 
-
+//<Settings isOn={value}
+//handleToggle={() => setValue(!value)}/>
 
 function App(props) {
   const handle = useFullScreenHandle();
@@ -25,8 +26,7 @@ function App(props) {
       <TodaysWeather/>
         <TimeNow timeSwitch={value} />
         <TodaysDate/>
-        <Settings isOn={value}
-        handleToggle={() => setValue(!value)}/>
+        
         <div className="exit">
         <button className="exitFullsreen" onClick={handle.exit}></button>
         </div>
