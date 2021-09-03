@@ -1,4 +1,6 @@
+
 A weather and the time wallpaper made for my kindle fire. 
+<br />
 Making use of https://openweathermap.org/ 
 
 
