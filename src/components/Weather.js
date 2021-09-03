@@ -22,7 +22,9 @@ function Weather(){
     const [state,setState]=useState();
     
     const kelvin = 273;
-    const URL = `https://api.openweathermap.org/data/2.5/weather?q=kidderminster&appid=9f47dbe7e74e9cca1168773c174db9a2`;
+    const CITY = ""; // Your city
+    const APIKEY = "" // API KEY
+    const URL = `https://api.openweathermap.org/data/2.5/weather?q=${CITY}&appid=${APIKEY}`;
 
     const weatherLogo = [clearSky,fewClounds,brokenClounds
                         ,showerRain,rain,thunder
